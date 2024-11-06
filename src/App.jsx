@@ -1,35 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
+
 import './App.css'
+import StarShipCard from './components/StarShipCard'
+import { getAllStarships } from './services/sw-api.mjs'
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [starships, setStarships] = useState([])
 
+  useEffect(() => {
+    async function fetchStarships() {
+      try {
+        const starshipData = await getAllStarships(); 
+        setStarships(starshipData);
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    fetchStarships();
+  }, []);
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className='App'>
+      <h1>Starships</h1>
+      <div className='cards'>
+        {starships.map((starship) => (
+          <StarShipCard starship={starship} key={starship.name}/>
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
 export default App
