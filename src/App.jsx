@@ -22,7 +22,7 @@ function App() {
   return (
     <div className='App'>
       <h1>Starships</h1>
-      <div className='cards'>
+      <div className='starship-cards'>
         {starships.map((starship) => (
           <StarShipCard starship={starship} key={starship.name}/>
         ))}

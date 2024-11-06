@@ -13,13 +13,36 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.cards {
-  border: 1px solid green;
+.starship-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  border: 1px solid #ddd;
+  background-color: rgba(21, 93, 91, 0.688);
+  padding: 20px;
+  width: 200px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+h2 {
+  color: white;
+  text-shadow: 1px 1px 1.5px #ddd;
+}
+
+p {
+  color: #224a91;
+  font-weight: 500;
 }
 
 button {
